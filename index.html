@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bola Hub — Berita Sepak Bola Terkini</title>
+<style>
+  :root {
+    --green: #0d7a3f;
+    --dark: #0b1a12;
+    --card: #142b1d;
+    --text: #e8f3ec;
+    --muted: #9fb8a9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  header {
+    background: linear-gradient(135deg, var(--green), #064426);
+    padding: 48px 20px 36px;
+    text-align: center;
+  }
+  header h1 {
+    font-size: 2.4rem;
+    letter-spacing: -0.02em;
+  }
+  header p {
+    color: #d7f0e2;
+    margin-top: 8px;
+    font-size: 1.05rem;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    padding: 14px;
+    background: #081c11;
+    font-size: 0.95rem;
+  }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--text); }
+  main {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+  .section-title {
+    font-size: 1.3rem;
+    margin: 36px 0 16px;
+    border-left: 4px solid var(--green);
+    padding-left: 12px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 18px;
+    border: 1px solid #1f3d2a;
+  }
+  .card h3 {
+    color: #7fe3a7;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+  }
+  .card p { color: #cfe6da; font-size: 0.97rem; }
+  .meta {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  footer {
+    text-align: center;
+    padding: 28px;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid #1f3d2a;
+  }
+  .badge {
+    display: inline-block;
+    background: #0d7a3f33;
+    color: #7fe3a7;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⚽ Bola Hub</h1>
+  <p>Berita & analisis sepak bola dunia — ringkas, terverifikasi, tanpa prediksi taruhan.</p>
+</header>
+
+<nav>
+  <a href="#berita">Berita</a>
+  <a href="#tentang">Tentang</a>
+</nav>
+
+<main>
+  <h2 class="section-title" id="berita">Berita Terbaru</h2>
+
+  <div class="card">
+    <span class="badge">Real Madrid · LaLiga</span>
+    <h3>Vinicius Jr. dan Ancaman Absen di El Clasico</h3>
+    <p>Penyerang Real Madrid, Vinicius Junior, menyampaikan permintaan maaf setelah menerima kartu merah akibat insiden menarik rambut dalam laga melawan Villarreal. Akibat sanksi disiplin ini, bintang asal Brasil tersebut terancam absen minimal dua laga, termasuk kemungkinan El Clasico yang sangat dinantikan. Kehilangan pemain kunci jadi tantangan berat bagi lini serang Los Blancos di tengah persaingan ketat LaLiga musim ini.</p>
+    <span class="meta">Sumber: Goal.com, Times of India — 11 Okt 2026</span>
+  </div>
+
+  <div class="card">
+    <span class="badge">Manchester City · Premier League</span>
+    <h3>Man City Ajukan Banding Usai Dinyatakan Bersalah</h3>
+    <p>Komisi independen Premier League menyatakan Manchester City bersalah atas seluruh dakwaan pelanggaran aturan finansial sepanjang sembilan musim (2009/10–2017/18), termasuk kontrak sponsor "sham" dan laporan keuangan yang menyesatkan. City resmi mengajukan banding ke Judicial Panel, menyebut putusan tersebut mengandung "kesalahan material" dalam hukum, prinsip, dan fakta. Proses banding berlangsung tertutup hingga hasil akhirnya diizinkan dipublikasikan.</p>
+    <span class="meta">Sumber: Premier League.com, BBC Sport — 2 Okt 2026</span>
+  </div>
+
+  <div class="card">
+    <span class="badge">Forest Green Rovers · EFL</span>
+    <h3>Eksperimen Unik: Klub Tanpa Manajer</h3>
+    <p>Pemilik Forest Green Rovers, Dale Vince, mengumumkan rencana radikal untuk menjalankan klub tanpa posisi manajer/kepala pelatih tetap. Tanggung jawab teknis rencananya dikelola secara kolektif oleh staf internal klub. Langkah ini dipandang sebagai eksperimen struktural yang belum pernah dicoba sebelumnya di level profesional Inggris.</p>
+    <span class="meta">Sumber: The Telegraph via Yahoo Sports — 11 Okt 2026</span>
+  </div>
+
+  <div class="card">
+    <span class="badge">Timnas Portugal</span>
+    <h3>Cristiano Ronaldo Diskors Federasi Portugal</h3>
+    <p>Federasi Sepak Bola Portugal (FPF) menjatuhkan skorsing sementara kepada Cristiano Ronaldo setelah ia meninggalkan kamp timnas akibat perselisihan dengan pelatih Jorge Jesus soal menit bermain. Ronaldo, yang sempat dicadangkan saat laga melawan Norwegia, telah meminta maaf kepada rekan setim dan suporter serta meminta federasi menjatuhkan sanksi atasnya. Kasus disipliner kini diselidiki Komisi Investigasi Disipliner FPF dengan status "mendesak".</p>
+    <span class="meta">Sumber: ESPN, ABC News — 10 Okt 2026</span>
+  </div>
+
+  <h2 class="section-title" id="tentang">Tentang Bola Hub</h2>
+  <div class="card">
+    <p>Bola Hub adalah situs konten sepak bola independen — fokus berita, cerita, dan analisis. Situs ini <strong>tidak terafiliasi dengan dan tidak mempromosikan platform taruhan/judi apa pun.</strong> Setiap berita diverifikasi dari sumber tepercaya sebelum dipublikasikan.</p>
+  </div>
+</main>
+
+<footer>
+  Dibangun & dikelola oleh Nino Koba — konten diverifikasi dari ESPN, BBC Sport, Goal.com, Premier League.com, The Telegraph.
+</footer>
+
+</body>
+</html>
