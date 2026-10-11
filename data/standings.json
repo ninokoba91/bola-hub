@@ -1,0 +1,18 @@
+{
+  "updated": "2026-10-12",
+  "matchday": 6,
+  "league": "Premier League 2026/27",
+  "table": [
+    {"pos":1,"team":"Manchester City","mp":6,"w":6,"d":0,"l":0,"pts":18},
+    {"pos":2,"team":"Arsenal","mp":6,"w":5,"d":0,"l":1,"pts":15},
+    {"pos":3,"team":"Brighton & Hove Albion","mp":6,"w":4,"d":1,"l":1,"pts":13},
+    {"pos":4,"team":"Brentford","mp":6,"w":2,"d":4,"l":0,"pts":10},
+    {"pos":5,"team":"Everton","mp":6,"w":2,"d":4,"l":0,"pts":10},
+    {"pos":6,"team":"Chelsea","mp":6,"w":3,"d":1,"l":2,"pts":10},
+    {"pos":7,"team":"Leeds United","mp":6,"w":2,"d":3,"l":1,"pts":9},
+    {"pos":8,"team":"Hull City","mp":6,"w":2,"d":3,"l":1,"pts":9},
+    {"pos":9,"team":"Liverpool","mp":6,"w":2,"d":3,"l":1,"pts":9},
+    {"pos":10,"team":"Ipswich Town","mp":6,"w":3,"d":0,"l":3,"pts":9}
+  ],
+  "source": "worldfootball.net, Betfair — cross-checked 2026-10-12"
+}

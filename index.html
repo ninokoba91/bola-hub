@@ -3,133 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bola Hub — Berita Sepak Bola Terkini</title>
+<title>Bola Hub — Portal Sepak Bola Terverifikasi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-  :root {
-    --bg: #0a0f0c; --bg2: #0f1712; --card: #131f18; --line: #1f3327;
-    --accent: #39e07a; --accent2: #1fae5c; --text: #eef7f0; --muted: #8fa89a;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
-    background: var(--bg); color: var(--text); line-height: 1.65; min-height: 100vh;
-  }
-  h1, h2, h3, .brand { font-family: 'Space Grotesk', sans-serif; }
-  .topbar {
-    position: sticky; top: 0; z-index: 10;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 28px; background: rgba(10,15,12,0.85);
-    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
-  }
-  .brand { font-size: 1.25rem; font-weight: 700; color: var(--accent); display: flex; gap: 8px; align-items: center; }
-  .topbar nav { display: flex; gap: 22px; font-size: 0.9rem; }
-  .topbar nav a { color: var(--muted); text-decoration: none; transition: color .15s; }
-  .topbar nav a:hover { color: var(--text); }
-  .hero {
-    padding: 64px 28px 44px;
-    background: radial-gradient(ellipse at top, #11331f 0%, var(--bg) 65%);
-    text-align: center;
-  }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); letter-spacing: -0.02em; }
-  .hero h1 span { color: var(--accent); }
-  .hero p { color: var(--muted); max-width: 520px; margin: 14px auto 0; font-size: 1.05rem; }
-  .pill {
-    display: inline-block; margin-top: 18px; padding: 6px 16px;
-    border: 1px solid var(--line); border-radius: 999px; font-size: 0.8rem; color: var(--accent);
-  }
-  main { max-width: 980px; margin: 0 auto; padding: 10px 24px 70px; }
-  .section-head { display: flex; align-items: baseline; justify-content: space-between; margin: 46px 0 20px; }
-  .section-head h2 { font-size: 1.4rem; }
-  .section-head span { color: var(--muted); font-size: 0.85rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; }
-  .card {
-    background: linear-gradient(160deg, var(--card), #0f1a13);
-    border: 1px solid var(--line); border-radius: 16px; padding: 24px;
-    transition: transform .18s, border-color .18s;
-  }
-  .card:hover { transform: translateY(-3px); border-color: var(--accent2); }
-  .tag {
-    display: inline-block; font-size: 0.72rem; font-weight: 600; color: var(--accent);
-    background: rgba(57,224,122,0.1); padding: 4px 10px; border-radius: 999px;
-    margin-bottom: 12px; letter-spacing: 0.02em;
-  }
-  .card h3 { font-size: 1.1rem; margin-bottom: 10px; line-height: 1.35; }
-  .card p { color: #c3d9cb; font-size: 0.93rem; }
-  .card .meta {
-    display: block; margin-top: 14px; padding-top: 12px;
-    border-top: 1px dashed var(--line); font-size: 0.78rem; color: var(--muted);
-  }
-  .about {
-    margin-top: 50px; padding: 26px; border-radius: 16px;
-    background: var(--bg2); border: 1px solid var(--line); font-size: 0.92rem; color: #c3d9cb;
-  }
-  .about strong { color: var(--accent); }
-  footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.8rem; border-top: 1px solid var(--line); }
-  .skeleton { height: 140px; border-radius: 16px; background: var(--card); animation: pulse 1.4s ease-in-out infinite; }
-  @keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:.9} }
+  body { font-family: 'Inter', sans-serif; }
+  .font-display { font-family: 'Space Grotesk', sans-serif; }
+  .tab-btn.active { color: #10b981; border-color: #10b981; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .skeleton { animation: pulse 1.4s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.8} }
 </style>
 </head>
-<body>
+<body class="bg-[#090d16] text-slate-100 min-h-screen">
 
-<div class="topbar">
-  <div class="brand">⚽ Bola Hub</div>
-  <nav>
-    <a href="#berita">Berita</a>
-    <a href="#tentang">Tentang</a>
-  </nav>
+<div class="sticky top-0 z-20 backdrop-blur-md bg-[#090d16]/85 border-b border-emerald-500/10">
+  <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="font-display text-xl font-bold text-emerald-400 flex items-center gap-2">
+      <i class="fa-solid fa-futbol"></i> Bola Hub
+    </div>
+    <span class="text-xs text-cyan-400 border border-cyan-400/30 rounded-full px-3 py-1">
+      <i class="fa-solid fa-circle-check mr-1"></i>Konten Terverifikasi
+    </span>
+  </div>
 </div>
 
-<section class="hero">
-  <h1>Kabar bola, <span>terverifikasi</span>.</h1>
-  <p>Berita & analisis sepak bola dunia — ringkas dan dicek ke sumber tepercaya. Tanpa prediksi taruhan/judi.</p>
-  <div class="pill">🔄 Konten diperbarui berkala via riset multi-agen</div>
+<section class="px-6 pt-16 pb-10 text-center" style="background: radial-gradient(ellipse at top, #0f2e22 0%, #090d16 65%);">
+  <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight">
+    Kabar bola, <span class="text-emerald-400">terverifikasi</span>.
+  </h1>
+  <p class="text-slate-400 max-w-lg mx-auto mt-4">
+    Berita, jadwal, dan klasemen sepak bola dunia — dicek ke sumber tepercaya. Tanpa prediksi taruhan/judi.
+  </p>
 </section>
 
-<main>
-  <div class="section-head" id="berita">
-    <h2>Berita Terbaru</h2>
-    <span id="count"></span>
+<div class="max-w-5xl mx-auto px-6">
+  <div class="flex gap-6 border-b border-emerald-500/10 overflow-x-auto text-sm font-medium">
+    <button class="tab-btn active py-3 border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-tab="beranda">
+      <i class="fa-solid fa-house mr-1.5"></i>Beranda
+    </button>
+    <button class="tab-btn py-3 border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-tab="jadwal">
+      <i class="fa-regular fa-calendar mr-1.5"></i>Jadwal Pertandingan
+    </button>
+    <button class="tab-btn py-3 border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-tab="klasemen">
+      <i class="fa-solid fa-ranking-star mr-1.5"></i>Klasemen Premier League
+    </button>
+    <button class="tab-btn py-3 border-b-2 border-transparent text-slate-400 whitespace-nowrap" data-tab="berita">
+      <i class="fa-regular fa-newspaper mr-1.5"></i>Berita Utama
+    </button>
   </div>
-  <div class="grid" id="feed">
-    <div class="skeleton"></div>
-    <div class="skeleton"></div>
-    <div class="skeleton"></div>
-    <div class="skeleton"></div>
+</div>
+
+<main class="max-w-5xl mx-auto px-6 py-10">
+
+  <div class="tab-panel active" id="panel-beranda">
+    <div class="grid md:grid-cols-3 gap-4 mb-8">
+      <div class="bg-[#101827] border border-emerald-500/10 rounded-2xl p-5">
+        <i class="fa-solid fa-ranking-star text-emerald-400 mb-2"></i>
+        <div class="text-sm text-slate-400">Puncak Klasemen</div>
+        <div class="font-display text-lg font-bold">Manchester City</div>
+        <div class="text-xs text-slate-500">18 poin · 6 laga</div>
+      </div>
+      <div class="bg-[#101827] border border-emerald-500/10 rounded-2xl p-5">
+        <i class="fa-regular fa-calendar text-cyan-400 mb-2"></i>
+        <div class="text-sm text-slate-400">Laga Berikutnya</div>
+        <div class="font-display text-lg font-bold">Coventry vs Newcastle</div>
+        <div class="text-xs text-slate-500">12 Okt, 21:00</div>
+      </div>
+      <div class="bg-[#101827] border border-emerald-500/10 rounded-2xl p-5">
+        <i class="fa-regular fa-newspaper text-emerald-400 mb-2"></i>
+        <div class="text-sm text-slate-400">Sorotan</div>
+        <div class="font-display text-lg font-bold">Ronaldo Diskors FPF</div>
+        <div class="text-xs text-slate-500">ESPN, ABC News</div>
+      </div>
+    </div>
+    <h2 class="font-display text-xl font-bold mb-4">Berita Terbaru</h2>
+    <div class="grid md:grid-cols-2 gap-4" id="feed-home"></div>
   </div>
 
-  <div class="about" id="tentang">
-    <p><strong>Bola Hub</strong> adalah situs konten sepak bola independen — fokus berita, cerita, dan analisis. Situs ini <strong>tidak terafiliasi dan tidak mempromosikan platform taruhan/judi apa pun.</strong> Setiap artikel diverifikasi ke sumber tepercaya sebelum dipublikasikan. Data artikel disajikan dari <code>data/articles.json</code> di repo ini — menambah berita baru cukup dengan menambah entri JSON.</p>
+  <div class="tab-panel" id="panel-jadwal">
+    <h2 class="font-display text-xl font-bold mb-4">Jadwal Pertandingan</h2>
+    <div class="space-y-3" id="fixtures-list"></div>
+  </div>
+
+  <div class="tab-panel" id="panel-klasemen">
+    <div class="flex items-baseline justify-between mb-4">
+      <h2 class="font-display text-xl font-bold">Klasemen Premier League</h2>
+      <span class="text-xs text-slate-500" id="standings-updated"></span>
+    </div>
+    <div class="overflow-x-auto rounded-xl border border-emerald-500/10">
+      <table class="w-full text-sm">
+        <thead class="bg-[#101827] text-slate-400">
+          <tr>
+            <th class="text-left px-4 py-3">#</th>
+            <th class="text-left px-4 py-3">Tim</th>
+            <th class="px-3 py-3">M</th>
+            <th class="px-3 py-3">M-S-K</th>
+            <th class="px-3 py-3">Poin</th>
+          </tr>
+        </thead>
+        <tbody id="standings-body"></tbody>
+      </table>
+    </div>
+    <p class="text-xs text-slate-500 mt-3" id="standings-source"></p>
+  </div>
+
+  <div class="tab-panel" id="panel-berita">
+    <div class="flex items-baseline justify-between mb-4">
+      <h2 class="font-display text-xl font-bold">Berita Utama</h2>
+      <span class="text-xs text-slate-500" id="count"></span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4" id="feed">
+      <div class="skeleton h-36 rounded-2xl bg-[#101827]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-[#101827]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-[#101827]"></div>
+      <div class="skeleton h-36 rounded-2xl bg-[#101827]"></div>
+    </div>
+  </div>
+
+  <div class="mt-14 p-6 rounded-2xl bg-[#0f1520] border border-emerald-500/10 text-sm text-slate-400">
+    <p><strong class="text-emerald-400">Bola Hub</strong> adalah situs konten sepak bola independen — fokus berita, jadwal, klasemen, dan analisis.
+    Situs ini <strong class="text-slate-200">tidak terafiliasi dan tidak mempromosikan platform taruhan/judi apa pun.</strong>
+    Setiap data diverifikasi ke sumber tepercaya. Arsitektur: static JSON (<code>data/*.json</code>) di-fetch langsung dari browser —
+    tanpa server/database tambahan, jadi bebas downtime dan biaya hosting berbayar.</p>
   </div>
 </main>
 
-<footer>
-  Dibangun & dikelola oleh Nino Koba — sumber: ESPN, BBC Sport, Goal.com, Premier League.com, The Telegraph.
+<footer class="text-center py-8 text-xs text-slate-500 border-t border-emerald-500/10">
+  Dibangun & dikelola oleh Nino Koba — kolaborasi LaVenio × Junoy (A2A) — sumber: ESPN, BBC Sport, Goal.com, Premier League.com, The Telegraph, worldfootball.net.
 </footer>
 
 <script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+function cardHTML(a) {
+  return `
+    <div class="bg-[#101827] border border-emerald-500/10 rounded-2xl p-5 hover:border-emerald-500/40 transition">
+      <span class="inline-block text-xs font-semibold text-emerald-400 bg-emerald-500/10 rounded-full px-3 py-1 mb-3">${a.category}</span>
+      <h3 class="font-display font-bold mb-2 leading-snug">${a.title}</h3>
+      <p class="text-sm text-slate-400">${a.body}</p>
+      <span class="block mt-3 pt-3 border-t border-dashed border-emerald-500/10 text-xs text-slate-500">
+        Sumber: ${a.source} — ${new Date(a.date).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})}
+      </span>
+    </div>`;
+}
+
 async function loadArticles() {
   const feed = document.getElementById('feed');
-  const count = document.getElementById('count');
+  const feedHome = document.getElementById('feed-home');
   try {
     const res = await fetch('data/articles.json', { cache: 'no-store' });
     const articles = await res.json();
     articles.sort((a, b) => new Date(b.date) - new Date(a.date));
-    count.textContent = articles.length + ' artikel';
-    feed.innerHTML = articles.map(a => `
-      <div class="card">
-        <span class="tag">${a.category}</span>
-        <h3>${a.title}</h3>
-        <p>${a.body}</p>
-        <span class="meta">Sumber: ${a.source} — ${new Date(a.date).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'})}</span>
-      </div>
-    `).join('');
+    document.getElementById('count').textContent = articles.length + ' artikel';
+    feed.innerHTML = articles.map(cardHTML).join('');
+    feedHome.innerHTML = articles.slice(0, 2).map(cardHTML).join('');
   } catch (e) {
-    feed.innerHTML = '<p style="color:#8fa89a">Gagal memuat artikel. Coba muat ulang halaman.</p>';
+    feed.innerHTML = '<p class="text-slate-500">Gagal memuat artikel.</p>';
   }
 }
+
+async function loadStandings() {
+  try {
+    const res = await fetch('data/standings.json', { cache: 'no-store' });
+    const data = await res.json();
+    document.getElementById('standings-updated').textContent =
+      'Matchday ' + data.matchday + ' — ' + new Date(data.updated).toLocaleDateString('id-ID', {day:'numeric', month:'long', year:'numeric'});
+    document.getElementById('standings-source').textContent = 'Sumber: ' + data.source;
+    document.getElementById('standings-body').innerHTML = data.table.map(t => `
+      <tr class="border-t border-emerald-500/10 hover:bg-emerald-500/5">
+        <td class="px-4 py-3 text-slate-400">${t.pos}</td>
+        <td class="px-4 py-3 font-medium">${t.team}</td>
+        <td class="px-3 py-3 text-center text-slate-400">${t.mp}</td>
+        <td class="px-3 py-3 text-center text-slate-400">${t.w}-${t.d}-${t.l}</td>
+        <td class="px-3 py-3 text-center font-bold text-emerald-400">${t.pts}</td>
+      </tr>`).join('');
+  } catch (e) {
+    document.getElementById('standings-body').innerHTML = '<tr><td class="p-4 text-slate-500">Gagal memuat klasemen.</td></tr>';
+  }
+}
+
+async function loadFixtures() {
+  try {
+    const res = await fetch('data/fixtures.json', { cache: 'no-store' });
+    const fixtures = await res.json();
+    document.getElementById('fixtures-list').innerHTML = fixtures.map(f => `
+      <div class="flex items-center justify-between bg-[#101827] border border-emerald-500/10 rounded-xl px-5 py-4">
+        <div>
+          <div class="font-medium">${f.home} <span class="text-slate-500">vs</span> ${f.away}</div>
+          <div class="text-xs text-slate-500">${new Date(f.date).toLocaleDateString('id-ID', {day:'numeric', month:'long'})} · ${f.time}</div>
+        </div>
+        <span class="text-xs rounded-full px-3 py-1 ${f.status === 'Selesai' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyan-500/10 text-cyan-400'}">${f.status}</span>
+      </div>`).join('');
+  } catch (e) {
+    document.getElementById('fixtures-list').innerHTML = '<p class="text-slate-500">Gagal memuat jadwal.</p>';
+  }
+}
+
 loadArticles();
+loadStandings();
+loadFixtures();
 </script>
 
 </body>
