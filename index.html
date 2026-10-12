@@ -31,13 +31,24 @@
   </div>
 </div>
 
-<section class="px-6 pt-16 pb-10 text-center" style="background: radial-gradient(ellipse at top, #0f2e22 0%, #090d16 65%);">
-  <h1 class="font-display text-4xl md:text-5xl font-bold tracking-tight">
+<section class="relative overflow-hidden px-6 pt-16 pb-12 text-center" style="background: radial-gradient(ellipse at top, #0f2e22 0%, #090d16 65%);">
+  <div class="absolute -right-10 -bottom-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -left-10 -top-10 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <span class="relative inline-block px-3 py-1 mb-4 text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-500/10 rounded-md border border-emerald-500/20">Musim 2026/27</span>
+  <h1 class="relative font-display text-4xl md:text-5xl font-bold tracking-tight">
     Kabar bola, <span class="text-emerald-400">terverifikasi</span>.
   </h1>
-  <p class="text-slate-400 max-w-lg mx-auto mt-4">
+  <p class="relative text-slate-400 max-w-lg mx-auto mt-4">
     Berita, jadwal, dan klasemen sepak bola dunia — dicek ke sumber tepercaya. Tanpa prediksi taruhan/judi.
   </p>
+  <div class="relative flex flex-wrap gap-3 justify-center mt-6">
+    <button onclick="document.querySelector('[data-tab=klasemen]').click()" class="px-5 py-2.5 rounded-xl bg-emerald-500 text-slate-950 font-bold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20 text-sm flex items-center gap-2">
+      Lihat Klasemen <i class="fa-solid fa-arrow-right text-xs"></i>
+    </button>
+    <button onclick="document.querySelector('[data-tab=berita]').click()" class="px-5 py-2.5 rounded-xl bg-slate-800 text-white font-semibold hover:bg-slate-700 transition border border-slate-700 text-sm">
+      Baca Berita Terbaru
+    </button>
+  </div>
 </section>
 
 <div class="max-w-5xl mx-auto px-6">
@@ -173,6 +184,18 @@ async function loadArticles() {
   }
 }
 
+function initials(name) {
+  return name.split(/[\s&]+/).filter(Boolean).slice(0,2).map(w => w[0]).join('').toUpperCase().slice(0,3);
+}
+const badgeColors = ['bg-red-600/20 text-red-400','bg-sky-600/20 text-sky-400','bg-blue-600/20 text-blue-400','bg-amber-600/20 text-amber-400','bg-emerald-600/20 text-emerald-400','bg-indigo-600/20 text-indigo-400'];
+function badgeColor(name) {
+  let h = 0; for (const c of name) h = (h + c.charCodeAt(0)) % badgeColors.length;
+  return badgeColors[h];
+}
+function teamBadge(name) {
+  return `<span class="w-7 h-7 rounded-full ${badgeColor(name)} flex items-center justify-center text-[10px] font-bold shrink-0">${initials(name)}</span>`;
+}
+
 async function loadStandings() {
   try {
     const res = await fetch('data/standings.json', { cache: 'no-store' });
@@ -182,11 +205,11 @@ async function loadStandings() {
     document.getElementById('standings-source').textContent = 'Sumber: ' + data.source;
     document.getElementById('standings-body').innerHTML = data.table.map(t => `
       <tr class="border-t border-emerald-500/10 hover:bg-emerald-500/5">
-        <td class="px-4 py-3 text-slate-400">${t.pos}</td>
-        <td class="px-4 py-3 font-medium">${t.team}</td>
+        <td class="px-4 py-3 text-center font-bold ${t.pos <= 4 ? 'text-emerald-400' : 'text-slate-400'}">${t.pos}</td>
+        <td class="px-4 py-3 font-medium flex items-center gap-2">${teamBadge(t.team)} ${t.team}</td>
         <td class="px-3 py-3 text-center text-slate-400">${t.mp}</td>
         <td class="px-3 py-3 text-center text-slate-400">${t.w}-${t.d}-${t.l}</td>
-        <td class="px-3 py-3 text-center font-bold text-emerald-400">${t.pts}</td>
+        <td class="px-3 py-3 text-center font-black text-emerald-400">${t.pts}</td>
       </tr>`).join('');
   } catch (e) {
     document.getElementById('standings-body').innerHTML = '<tr><td class="p-4 text-slate-500">Gagal memuat klasemen.</td></tr>';
@@ -198,12 +221,16 @@ async function loadFixtures() {
     const res = await fetch('data/fixtures.json', { cache: 'no-store' });
     const fixtures = await res.json();
     document.getElementById('fixtures-list').innerHTML = fixtures.map(f => `
-      <div class="flex items-center justify-between bg-[#101827] border border-emerald-500/10 rounded-xl px-5 py-4">
-        <div>
-          <div class="font-medium">${f.home} <span class="text-slate-500">vs</span> ${f.away}</div>
-          <div class="text-xs text-slate-500">${new Date(f.date).toLocaleDateString('id-ID', {day:'numeric', month:'long'})} · ${f.time}</div>
+      <div class="flex items-center justify-between bg-[#101827] border border-emerald-500/10 rounded-xl px-5 py-4 hover:border-emerald-500/30 transition">
+        <div class="flex items-center gap-3">
+          ${teamBadge(f.home)}
+          <div>
+            <div class="font-medium">${f.home} <span class="text-slate-500">vs</span> ${f.away}</div>
+            <div class="text-xs text-slate-500">${new Date(f.date).toLocaleDateString('id-ID', {day:'numeric', month:'long'})} · ${f.time}</div>
+          </div>
+          ${teamBadge(f.away)}
         </div>
-        <span class="text-xs rounded-full px-3 py-1 ${f.status === 'Selesai' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyan-500/10 text-cyan-400'}">${f.status}</span>
+        <span class="text-xs font-semibold rounded-full px-3 py-1 ${f.status === 'Selesai' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-cyan-500/10 text-cyan-400'}">${f.status}</span>
       </div>`).join('');
   } catch (e) {
     document.getElementById('fixtures-list').innerHTML = '<p class="text-slate-500">Gagal memuat jadwal.</p>';
